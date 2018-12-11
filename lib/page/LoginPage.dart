@@ -11,19 +11,7 @@ class LoginPage extends StatefulWidget {
     return new _LoginPageState();
   }
 }
-class LoginPageState extends State<LoginPage>{
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return new Scaffold(
-      appBar: AppBar(title: Text("测试"),),
-      body: Center(
-        child: Text("测试"),
-      ),
-    );
-  }
 
-}
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController userController = new TextEditingController();
   final TextEditingController pwController = new TextEditingController();
@@ -73,6 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                         new Padding(padding: const EdgeInsets.all(10.0)),
                         new InputIconWidget(
                           hintText: "输入github账户",
+                          obscureText: false,
                           iconData: Icons.account_box,
                           onChanged: (String value) {
                             _userName = value;
@@ -106,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                             "登录",
                           ),
                         ),
-                        new Padding(padding: const EdgeInsets.all(16.0)),
+
                       ],
                     ),
                   ),

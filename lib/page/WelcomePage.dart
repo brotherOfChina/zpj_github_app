@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:redux/redux.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:zpj_githup_app/redux/ZpjRedux.dart';
+import 'package:zpj_githup_app/page/LoginPage.dart';
 
 class WelcomePage extends StatefulWidget {
   static final sName = '/';
@@ -11,6 +15,20 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
+  bool hadInit = false;//防止多次进入
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    if(hadInit){
+      return;
+    }
+    hadInit=true;
+    Store<ZpjState> store=StoreProvider.of(context);
+    new Future.delayed(const Duration(seconds: 3),(){
+      Navigator.pushReplacementNamed(context,LoginPage.sName);
+    });
+  }
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

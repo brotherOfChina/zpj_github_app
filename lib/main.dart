@@ -23,7 +23,9 @@ class FlutterReduxApp extends StatelessWidget {
               return new WelcomePage();
             },
             LoginPage.sName: (context) {
-              return new LoginPage();
+              return new ZpjLocalizations(
+                child: new LoginPage(),
+              );
             },
           },
         ));
