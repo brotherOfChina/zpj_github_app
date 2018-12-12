@@ -1,8 +1,11 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part 'User.g.dart';
+
 @JsonSerializable()
 class User {
-  User(this.login,
+  User(
+      this.login,
       this.id,
       this.node_id,
       this.avatar_url,
@@ -27,19 +30,18 @@ class User {
       this.email,
       this.starred,
       this.bio,
-      this.publicRepos,
-      this.publicGists,
+      this.public_repos,
+      this.public_gists,
       this.followers,
       this.following,
-      this.createdAt,
-      this.updatedAt,
-      this.privateGists,
-      this.totalPrivateRepos,
-      this.ownedPrivateRepos,
-      this.diskUsage,
-      this.collaborators, //合作者
-      this.twoFactorAuthentication, //两个因素认证
-      );
+      this.created_at,
+      this.updated_at,
+      this.private_gists,
+      this.total_private_repos,
+      this.owned_private_repos,
+      this.disk_usage,
+      this.collaborators,
+      this.two_factor_authentication);
 
   String login;
   int id;
@@ -66,19 +68,26 @@ class User {
   String email;
   String starred;
   String bio;
-  int publicRepos;
-  int publicGists;
+  int public_repos;
+  int public_gists;
   int followers;
   int following;
-  DateTime createdAt;
-  DateTime updatedAt;
-  int privateGists;
-  int totalPrivateRepos;
-  int ownedPrivateRepos;
-  int diskUsage;
-  int collaborators; //合作者
-  bool twoFactorAuthentication; //两个因素认证
+  DateTime created_at;
+  DateTime updated_at;
+  int private_gists;
+  int total_private_repos;
+  int owned_private_repos;
+  int disk_usage;
+  int collaborators;
+  bool two_factor_authentication;
+
+
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+
+
+  Map<String, dynamic> toJson() => _$UserToJson(this);
+
+  // 命名构造函数
   User.empty();
-  factory User.fromjson(Map<String,dynamic> json)=>_$UserFromJson(json);
-  Map<String,dynamic> tojson()=>_$UserToJson(this);
+
 }

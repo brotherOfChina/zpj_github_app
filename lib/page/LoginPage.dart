@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:zpj_githup_app/widget/InputIconWidget.dart';
-import 'package:zpj_githup_app/redux/ZpjRedux.dart';
+import 'package:zpj_githup_app/common/redux/ZpjRedux.dart';
 class LoginPage extends StatefulWidget {
   static final sName = "login";
 

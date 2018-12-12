@@ -8,7 +8,8 @@ import 'package:redux/redux.dart';
 /// 自定义///
 import 'package:zpj_githup_app/net/Address.dart';
 import 'package:zpj_githup_app/style/ZPJStyle.dart';
-import 'package:zpj_githup_app/redux/ThemeRedux.dart';
+import 'package:zpj_githup_app/common/redux/ThemeRedux.dart';
+import 'package:zpj_githup_app/common/redux/ZpjRedux.dart';
 
 /**
  * 通用工具类
@@ -122,13 +123,11 @@ class CommonUtils {
       }
       return fullName;
    }
-   static pushTheme(Store store,int index){
+   static pushTheme(Store store,int index) {
       ThemeData themeData;
       List<Color> colors=getThemeListColor();
       themeData=new ThemeData(primarySwatch: colors[index],platform: TargetPlatform.iOS);
-//      store.dispatch(new )
-
-
+      store.dispatch(new RefreshThemeDataAction(themeData: themeData));
    }
 
   static List<Color> getThemeListColor() {
@@ -141,6 +140,10 @@ class CommonUtils {
       Colors.blueGrey,
       Colors.deepOrange,
     ];
+  }
+  ///切换语言
+  static changeLocale(Store<ZpjState> store,int index){
+//    Locale locale=store.state
   }
 
 

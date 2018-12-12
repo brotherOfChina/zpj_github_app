@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:zpj_githup_app/redux/ZpjRedux.dart';
+import 'package:zpj_githup_app/common/redux/ZpjRedux.dart';
 import 'package:zpj_githup_app/page/LoginPage.dart';
 
 class WelcomePage extends StatefulWidget {

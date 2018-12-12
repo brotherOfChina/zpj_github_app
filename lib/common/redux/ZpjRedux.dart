@@ -1,9 +1,11 @@
 import 'UserRedux.dart';
-import 'package:zpj_githup_app/model/User.dart';
+import 'package:zpj_githup_app/common/model/User.dart';
 
 
 class ZpjState{
   User userInfo;
+
+
   ZpjState({this.userInfo});
 
 }

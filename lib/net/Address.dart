@@ -1,4 +1,4 @@
-import 'package:zpj_githup_app/common/Config.dart';
+import 'package:zpj_githup_app/common/config/Config.dart';
 
 class Address{
   static const String host="https://api.githup.com/";

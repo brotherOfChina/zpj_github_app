@@ -3,8 +3,8 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'dart:async';
 import 'package:zpj_githup_app/page/LoginPage.dart';
-import 'package:zpj_githup_app/redux/ZpjRedux.dart';
-import 'package:zpj_githup_app/model/User.dart';
+import 'package:zpj_githup_app/common/redux/ZpjRedux.dart';
+import 'package:zpj_githup_app/common/model/User.dart';
 import 'package:zpj_githup_app/page/WelcomePage.dart';
 
 void main() => runApp(FlutterReduxApp());
