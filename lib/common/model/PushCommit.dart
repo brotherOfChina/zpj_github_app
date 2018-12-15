@@ -1,8 +1,8 @@
-import 'package:zpj_githup_app/common/model/CommitFile.dart';
-import 'package:zpj_githup_app/common/model/CommitGitInfo.dart';
-import 'package:zpj_githup_app/common/model/CommitStats.dart';
-import 'package:zpj_githup_app/common/model/RepoCommit.dart';
-import 'package:zpj_githup_app/common/model/User.dart';
+import 'package:zpj_github_app/common/model/CommitFile.dart';
+import 'package:zpj_github_app/common/model/CommitGitInfo.dart';
+import 'package:zpj_github_app/common/model/CommitStats.dart';
+import 'package:zpj_github_app/common/model/RepoCommit.dart';
+import 'package:zpj_github_app/common/model/User.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 /**

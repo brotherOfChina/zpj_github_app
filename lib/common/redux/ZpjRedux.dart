@@ -1,12 +1,12 @@
 import 'UserRedux.dart';
-import 'package:zpj_githup_app/common/model/User.dart';
-import 'package:zpj_githup_app/common/model/Event.dart';
-import 'package:zpj_githup_app/common/model/TrendingRepoModel.dart';
+import 'package:zpj_github_app/common/model/User.dart';
+import 'package:zpj_github_app/common/model/Event.dart';
+import 'package:zpj_github_app/common/model/TrendingRepoModel.dart';
 import 'package:flutter/material.dart';
-import 'package:zpj_githup_app/common/redux/event_redux.dart';
-import 'package:zpj_githup_app/common/redux/TrendRedux.dart';
-import 'package:zpj_githup_app/common/redux/ThemeRedux.dart';
-import 'package:zpj_githup_app/common/redux/LocaleRedux.dart';
+import 'package:zpj_github_app/common/redux/event_redux.dart';
+import 'package:zpj_github_app/common/redux/TrendRedux.dart';
+import 'package:zpj_github_app/common/redux/ThemeRedux.dart';
+import 'package:zpj_github_app/common/redux/LocaleRedux.dart';
 class ZpjState {
   ///用户信息
   User userInfo;

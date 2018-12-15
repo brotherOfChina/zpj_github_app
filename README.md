@@ -1,4 +1,4 @@
-# zpj_githup_app
+# zpj_github_app
 
 A new Flutter application.
 

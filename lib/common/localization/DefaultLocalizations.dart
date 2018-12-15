@@ -1,9 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:zpj_githup_app/common/style/ZpjStringBase.dart';
-import 'package:zpj_githup_app/common/style/ZpjStringEn.dart';
-import 'package:zpj_githup_app/common/style/ZpjStringZh.dart';
+import 'package:zpj_github_app/common/style/ZpjStringBase.dart';
+import 'package:zpj_github_app/common/style/ZpjStringEn.dart';
+import 'package:zpj_github_app/common/style/ZpjStringZh.dart';
 
 
 class ZpjLocalizations{

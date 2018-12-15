@@ -1,4 +1,4 @@
-package com.zpj.zpjgithupapp
+package com.zpj.zpjgithubapp
 
 import android.os.Bundle
 

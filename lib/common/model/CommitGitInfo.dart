@@ -1,4 +1,4 @@
-import 'package:zpj_githup_app/common/model/CommitGitUser.dart';
+import 'package:zpj_github_app/common/model/CommitGitUser.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 /**

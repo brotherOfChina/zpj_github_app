@@ -1,4 +1,4 @@
-import 'package:zpj_githup_app/common/model/TrendingRepoModel.dart';
+import 'package:zpj_github_app/common/model/TrendingRepoModel.dart';
 import 'package:redux/redux.dart';
 
 /**

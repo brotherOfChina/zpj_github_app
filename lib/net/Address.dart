@@ -1,8 +1,8 @@
-import 'package:zpj_githup_app/common/config/Config.dart';
+import 'package:zpj_github_app/common/config/Config.dart';
 
 class Address{
-  static const String host="https://api.githup.com/";
-  static const String hostWeb="https://githup.com/";
+  static const String host="https://api.github.com/";
+  static const String hostWeb="https://github.com/";
   static const String downloadUrl="https://www.payer.com/GSYGithupApp";
   static const String graphicHost="https://ghchart.rshah.org/";
   static const String updateUrl= 'https://www.pgyer.com/vj2B';

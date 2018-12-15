@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zpj_githup_app/common/style/ZPJStyle.dart';
+import 'package:zpj_github_app/common/style/ZPJStyle.dart';
 class CardItem extends  StatelessWidget{
   final Widget child;
   final EdgeInsets margin;

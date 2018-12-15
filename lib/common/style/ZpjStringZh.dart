@@ -1,4 +1,4 @@
-import 'package:zpj_githup_app/common/style/ZpjStringBase.dart';
+import 'package:zpj_github_app/common/style/ZpjStringBase.dart';
 
 /**
  * Created by guoshuyu

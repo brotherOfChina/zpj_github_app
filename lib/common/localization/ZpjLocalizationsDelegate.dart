@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:zpj_githup_app/common/localization/DefaultLocalizations.dart';
+import 'package:zpj_github_app/common/localization/DefaultLocalizations.dart';
 
   /**
   *   author：Administrator

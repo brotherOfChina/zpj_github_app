@@ -1,4 +1,4 @@
-import 'package:zpj_githup_app/common/model/User.dart';
+import 'package:zpj_github_app/common/model/User.dart';
 import 'package:redux/redux.dart';
 
 final userReducer =

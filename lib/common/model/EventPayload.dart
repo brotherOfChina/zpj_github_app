@@ -1,7 +1,7 @@
-import 'package:zpj_githup_app/common/model/Issue.dart';
-import 'package:zpj_githup_app/common/model/IssueEvent.dart';
-import 'package:zpj_githup_app/common/model/PushEventCommit.dart';
-import 'package:zpj_githup_app/common/model/Release.dart';
+import 'package:zpj_github_app/common/model/Issue.dart';
+import 'package:zpj_github_app/common/model/IssueEvent.dart';
+import 'package:zpj_github_app/common/model/PushEventCommit.dart';
+import 'package:zpj_github_app/common/model/Release.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 /**

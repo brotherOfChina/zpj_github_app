@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:zpj_githup_app/widget/InputIconWidget.dart';
-import 'package:zpj_githup_app/common/redux/ZpjRedux.dart';
+import 'package:zpj_github_app/widget/InputIconWidget.dart';
+import 'package:zpj_github_app/common/redux/ZpjRedux.dart';
+import 'package:zpj_github_app/common/utils/CommonUtils.dart';
+
 class LoginPage extends StatefulWidget {
   static final sName = "login";
 
@@ -87,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                             if (_password == null || _password.length == 0) {
                               return;
                             }
-                            print(_userName + _password);
+                            CommonUtils.showLoadingDialog(context);
                           },
                           color: Theme.of(context).primaryColor,
                           textColor: Colors.white70,
@@ -95,7 +97,6 @@ class _LoginPageState extends State<LoginPage> {
                             "登录",
                           ),
                         ),
-
                       ],
                     ),
                   ),

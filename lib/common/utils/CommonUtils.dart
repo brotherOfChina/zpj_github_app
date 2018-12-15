@@ -13,15 +13,16 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 /// 自定义///
-import 'package:zpj_githup_app/net/Address.dart';
-import 'package:zpj_githup_app/common/style/ZPJStyle.dart';
-import 'package:zpj_githup_app/common/redux/ThemeRedux.dart';
-import 'package:zpj_githup_app/common/redux/ZpjRedux.dart';
-import 'package:zpj_githup_app/common/redux/LocaleRedux.dart';
-import 'package:zpj_githup_app/common/style/ZpjStringBase.dart';
-import 'package:zpj_githup_app/common/localization/DefaultLocalizations.dart';
-import 'package:zpj_githup_app/common/localization/ZpjLocalizationsDelegate.dart';
-import 'package:zpj_githup_app/widget/IssueEditDialog.dart';
+import 'package:zpj_github_app/net/Address.dart';
+import 'package:zpj_github_app/common/style/ZPJStyle.dart';
+import 'package:zpj_github_app/common/redux/ThemeRedux.dart';
+import 'package:zpj_github_app/common/redux/ZpjRedux.dart';
+import 'package:zpj_github_app/common/redux/LocaleRedux.dart';
+import 'package:zpj_github_app/common/style/ZpjStringBase.dart';
+import 'package:zpj_github_app/common/localization/DefaultLocalizations.dart';
+import 'package:zpj_github_app/common/localization/ZpjLocalizationsDelegate.dart';
+import 'package:zpj_github_app/widget/IssueEditDialog.dart';
+import 'package:zpj_github_app/widget/FlexButton.dart';
 
 /**
  * 通用工具类
@@ -341,16 +342,51 @@ class CommonUtils {
               decoration: BoxDecoration(
                   color: Color(ZPJColors.white),
                   borderRadius: BorderRadius.all(Radius.circular(4.0))),
-              child: new ListView.builder(itemBuilder: (context,index){
-                return RaisedButton(
-                  padding: new EdgeInsets.only(left: 20.0,top: 10.0,right: 20.0,bottom: 10.0),
-                  textColor:colorList!=null?colorList[index]:Theme.of(context).primaryColor ,
-
-                );
-              },
-              itemCount: commitMaps.length,
+              child: new ListView.builder(
+                itemBuilder: (context, index) {
+                  return FlexButton(
+                    maxLines: 2,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    fontSize: 14.0,
+                    color: colorList != null
+                        ? colorList[index]
+                        : Theme.of(context).primaryColor,
+                    text: commitMaps[index],
+                    textColor: Color(ZPJColors.white),
+                    onPress: () {
+                      Navigator.pop(context);
+                      onTap(index);
+                    },
+                  );
+                },
+                itemCount: commitMaps.length,
               ),
             ),
+          );
+        });
+  }
+
+  static Future<Null> showUpdateDialog(
+      BuildContext context, String contentMsg) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: new Text(CommonUtils.getLocale(context).app_version_title),
+            content: new Text(contentMsg),
+            actions: <Widget>[
+              new FlatButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: new Text(CommonUtils.getLocale(context).app_cancel)),
+              new FlatButton(
+                  onPressed: () {
+                    launch(Address.updateUrl);
+                    Navigator.pop(context);
+                  },
+                  child: new Text(CommonUtils.getLocale(context).app_ok))
+            ],
           );
         });
   }

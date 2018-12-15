@@ -1,6 +1,6 @@
-import 'package:zpj_githup_app/common/model/EventPayload.dart';
-import 'package:zpj_githup_app/common/model/Repository.dart';
-import 'package:zpj_githup_app/common/model/User.dart';
+import 'package:zpj_github_app/common/model/EventPayload.dart';
+import 'package:zpj_github_app/common/model/Repository.dart';
+import 'package:zpj_github_app/common/model/User.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 /**
