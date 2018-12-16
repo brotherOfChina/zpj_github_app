@@ -13,7 +13,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 /// 自定义///
-import 'package:zpj_github_app/net/Address.dart';
+import 'package:zpj_github_app/common/net/Address.dart';
 import 'package:zpj_github_app/common/style/ZPJStyle.dart';
 import 'package:zpj_github_app/common/redux/ThemeRedux.dart';
 import 'package:zpj_github_app/common/redux/ZpjRedux.dart';

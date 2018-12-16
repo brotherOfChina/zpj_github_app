@@ -90,6 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                               return;
                             }
                             CommonUtils.showLoadingDialog(context);
+
                           },
                           color: Theme.of(context).primaryColor,
                           textColor: Colors.white70,

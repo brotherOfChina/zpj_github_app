@@ -9,7 +9,7 @@ class WelcomePage extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
+
     return new _WelcomePageState();
   }
 }
@@ -18,7 +18,7 @@ class _WelcomePageState extends State<WelcomePage> {
   bool hadInit = false; //防止多次进入
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
+
     super.didChangeDependencies();
     if (hadInit) {
       return;
