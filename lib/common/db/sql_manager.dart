@@ -13,10 +13,19 @@ class SqlManager {
   static init() async {
     var dataBasePath = await getDatabasesPath();
 
-    var userRes = await UserDao.getUserInfo();
+    var userRes = await UserDao.getUserInfoLocal();
     String dbName = _NAME;
-    if(userRes!=null&&userRes.result){
-      User user=userRes.data;
+    if (userRes != null && userRes.result) {
+      User user = userRes.data;
+      if (user != null && user.login != null) {
+        dbName = user.login + "_" + _NAME;
+      }
     }
+    String path = dataBasePath + dbName;
+    if (Platform.isIOS) {
+      path = dataBasePath + "/" + dbName;
+    }
+    _database = await openDatabase(path,
+        version: _VERSION, onCreate: (Database db, int version) async {});
   }
 }

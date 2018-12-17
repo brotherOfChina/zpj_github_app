@@ -1,18 +1,19 @@
-import 'package:zpj_github_app/common/db/sql_provider.dart';
-import 'package:sqflite/sqflite.dart';
-
-import 'package:zpj_github_app/common/model/User.dart';
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:zpj_github_app/common/model/User.dart';
+import 'package:zpj_github_app/common/model/UserOrg.dart';
+import 'package:zpj_github_app/common/db/sql_provider.dart';
+import 'package:sqflite/sqflite.dart';
 /**
  *   created by zpj
  *   updateTime:
- *   createdTime: 2018/12/16 19:12
-    用户粉丝表
+ *   createdTime: 2018/12/16 19:13
+    用户组织
  */
-class UserFollower extends BaseDbProvider {
-  final String name = "UserFollower";
+
+class UserOrgDbProvider extends BaseDbProvider {
+  final String name = "UserOrg";
   final String columnId = "_id";
   final String columnUserName = "userName";
   final String columnData = "data";
@@ -21,17 +22,19 @@ class UserFollower extends BaseDbProvider {
   String userName;
   String data;
 
-  UserFollower();
+  UserOrgDbProvider();
 
   Map<String, dynamic> toMap(String userName, String data) {
     Map<String, dynamic> map = {columnUserName: userName, columnData: data};
     if (id != null) {
-      map[columnId] = id;
+      {
+        map[columnId] = id;
+      }
     }
     return map;
   }
 
-  UserFollower.fromMap(Map map) {
+  UserOrgDbProvider.fromMap(Map map) {
     id = map[columnId];
     userName = map[columnUserName];
     data = map[columnData];
@@ -56,32 +59,31 @@ class UserFollower extends BaseDbProvider {
         columns: [columnId, columnUserName, columnData],
         where: "$columnUserName=?",
         whereArgs: [userName]);
-    if (maps.length > 0) {
-      UserFollower userFollower = UserFollower.fromMap(maps.first);
-      return userFollower;
+    if(maps.length>0){
+      UserOrgDbProvider provider=UserOrgDbProvider.fromMap(maps.first);
+      return  provider;
     }
     return null;
   }
-
   ///插入到数据库
-  Future insert(String userName, String dataMapString) async {
-    Database db = await getDataBase();
-    var provider = await _getProvider(db, userName);
-    if (provider != null) {
-      await db.delete(name, where: "$columnUserName=?", whereArgs: [userName]);
+  Future insert(String userName,String eventMapString) async{
+    Database db=await getDataBase();
+    var provider=_getProvider(db, userName);
+    if(provider!=null){
+      await db.delete(name,where: "$columnUserName=?",whereArgs: [userName]);
     }
-    return await db.insert(name, toMap(userName, dataMapString));
+    return await db.insert(name, toMap(userName, eventMapString));
+
   }
-  ///获取事件数据
-  Future <List<User>> getData(String userName)async{
+  Future<List<UserOrg>> getData(String userName) async {
     Database db=await getDataBase();
     var provider=await _getProvider(db, userName);
     if(provider!=null){
-      List<User> list=new List();
+      List<UserOrg> list=new List();
       List<dynamic> eventMap=json.decode(provider.data);
       if(eventMap.length>0){
         for(var item in eventMap){
-          list.add(User.fromJson(item));
+          list.add(UserOrg.fromJson(item));
         }
       }
       return list;

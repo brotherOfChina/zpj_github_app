@@ -25,13 +25,13 @@ abstract class BaseDbProvider{
   }
   @mustCallSuper
   prepare(name ,String createSql)async{
-    isTableExits=await
+
 
   }
   @mustCallSuper
   open() async{
     if(!isTableExits){
-      await prepare()
+//      await prepare()
     }
 
   }

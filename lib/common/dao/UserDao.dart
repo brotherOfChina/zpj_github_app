@@ -119,11 +119,24 @@ class UserDao {
   }
 
   ///获取用户粉丝列表
-  static getFollowListDao(){
+  static getFollowListDao(userName,page,{needDb=false})async{
+
 
   }
-  
+  ///获取用户关注列表
+ static getFollowedListDao(userName,page,{needDb=false})async{
 
+ }
+  ///获取用户相关通知
+  static getNotifyDao(bool all ,bool participating,page)async{
+
+  }
+
+  ///设置单个通知已读
+  static setNotificationReadDao(){
+
+
+  }
 
 
 
