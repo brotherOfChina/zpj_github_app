@@ -18,6 +18,7 @@ import 'package:zpj_github_app/common/db/user/user_follower.dart';
 import 'package:zpj_github_app/common/db/user/user_followed.dart';
 import 'package:zpj_github_app/common/model/Notification.dart';
 import 'package:zpj_github_app/common/db/user/user_orgs.dart';
+import 'package:zpj_github_app/common/db/user/user_info.dart';
 
 /**
  *   created by zpj
@@ -37,30 +38,73 @@ class UserDao {
     await LocalStorage.save(Config.USER_NAME_KEY, userName);
     await LocalStorage.save(Config.USER_BASIC_CODE, base64String);
     Map requestParams = {
-      "": [],
+      "scopes": ['user', 'repo', 'gist', 'notifications'],
       "note": "admin_script",
       "client_id": NetConfig.CLIENT_ID,
       "client_secret": NetConfig.CLIENT_SECRET,
     };
     HttpManager.clearAuthorization();
+
     var res = await HttpManager.netFetch(Address.getAuthorization(),
         json.encode(requestParams), null, new Options(method: "post"));
     var resultData = null;
     if (res != null && res.result) {
       await LocalStorage.save(Config.PW_KEY, password);
-      var resultData = await getUserInfo(null);
+       resultData = await getUserInfo(null);
       if (Config.DEBUG) {
-        print("user result;" + resultData.result.toString());
+
         print(resultData.data);
         print(res.data.toString());
       }
       store.dispatch(new UpdateUserAction(resultData.data));
+
     }
     return new DaoResult(resultData, res.result);
   }
 
   ///获取用户信息
-  static getUserInfo(userName, {needDb = false}) async {}
+  static getUserInfo(userName, {needDb = false}) async {
+    UserInfoDbProvider provider=new UserInfoDbProvider();
+    next() async{
+      var res;
+      if(userName==null){
+        res=await HttpManager.netFetch(Address.getMyUserInfo(), null, null, null);
+      }else{
+        res =await HttpManager.netFetch(Address.getUserInfo(userName), null, null, null);
+      }
+      if(res!=null&&res.result){
+        String starred="---"  ;
+        if(res.data["type"]!="Organization"){
+          var countRes=await getUserStaredCountNet(res.data["login"]);
+          if(countRes.result){
+            starred=countRes.data;
+          }
+
+        }
+        User user=User.fromJson(res.data);
+        user.starred=starred;
+        if(userName==null){
+          LocalStorage.save(Config.USER_INFO, json.encode(user.toJson()));
+        }else{
+          if(needDb){
+            provider.insert(userName, json.encode(user.toJson()));
+          }
+        }
+        return new DaoResult(user, true);
+      }else{
+        return new DaoResult(res.data, false);
+      }
+    }
+    if(needDb){
+      User user=await provider.getUserInfo(userName);
+      if(user!=null){
+        return await next();
+      }
+      DaoResult daoResult=new DaoResult(user, true,next: next());
+      return daoResult;
+    }
+    return await next();
+  }
 
   ///获取本地用户信息
   static getUserInfoLocal() async {

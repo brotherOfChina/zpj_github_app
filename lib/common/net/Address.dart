@@ -8,7 +8,7 @@ class Address{
   static const String updateUrl= 'https://www.pgyer.com/vj2B';
   ///获取授权 posy
   static getAuthorization(){
-    return "${host}authorization";
+    return "${host}authorizations";
   }
 
   ///搜索get

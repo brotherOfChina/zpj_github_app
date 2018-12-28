@@ -34,11 +34,7 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       body: new Container(
-
-        child: Image(
-          image: AssetImage("static/images/yang_mi.jpg"),
-
-        ),
+        child: Image.asset("static/images/yang_mi.jpg"),
       ),
     );
   }

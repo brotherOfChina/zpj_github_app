@@ -3,13 +3,16 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:zpj_github_app/widget/InputIconWidget.dart';
 import 'package:zpj_github_app/common/redux/ZpjRedux.dart';
 import 'package:zpj_github_app/common/utils/CommonUtils.dart';
+import 'package:zpj_github_app/common/dao/UserDao.dart';
+import 'package:zpj_github_app/common/utils/NavigatorUtils.dart';
+import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
   static final sName = "login";
 
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
+
     return new _LoginPageState();
   }
 }
@@ -22,21 +25,21 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void setState(fn) {
-    // TODO: implement setState
+
     super.setState(fn);
   }
 
   @override
   void initState() {
-    // TODO: implement initState
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+
     return new StoreBuilder<ZpjState>(
-      builder: (context, count) {
+      builder: (context, store) {
         return new GestureDetector(
           behavior: HitTestBehavior.translucent,
           onTap: () {
@@ -59,7 +62,6 @@ class _LoginPageState extends State<LoginPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        new Image(image: new AssetImage('')),
                         new Padding(padding: const EdgeInsets.all(10.0)),
                         new InputIconWidget(
                           hintText: "输入github账户",
@@ -83,6 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                         new Padding(padding: new EdgeInsets.all(30.0)),
                         new RaisedButton(
                           onPressed: () {
+
                             if (_userName == null || _userName.length == 0) {
                               return;
                             }
@@ -90,7 +93,19 @@ class _LoginPageState extends State<LoginPage> {
                               return;
                             }
                             CommonUtils.showLoadingDialog(context);
+                            UserDao.login(_userName, _password, store)
+                                .then((res) {
+                              Navigator.pop(context);
 
+                              if (res != null && res.result) {
+
+                                new Future.delayed(const Duration(seconds: 1),
+                                        () {
+                                      NavigatorUtils.goHome(context);
+                                      return true;
+                                    });
+                              }
+                            });
                           },
                           color: Theme.of(context).primaryColor,
                           textColor: Colors.white70,
