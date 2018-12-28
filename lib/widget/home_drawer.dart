@@ -5,7 +5,7 @@ import 'package:zpj_github_app/common/redux/ZpjRedux.dart';
 import 'package:zpj_github_app/common/model/User.dart';
 import 'package:zpj_github_app/common/style/ZPJStyle.dart';
 import 'package:zpj_github_app/common/utils/CommonUtils.dart';
-
+import 'package:zpj_github_app/common/localization/DefaultLocalizations.dart';
 /**
  *   author：Administrator
  *   create_date:2018/12/28 0028-10:10
@@ -95,21 +95,35 @@ class HomeDrawer extends StatelessWidget {
                           CommonUtils.getLocale(context).home_change_theme,
                           style: ZpjConstant.normalText,
                         ),
-                        onTap: (){
-                        },
+                        onTap: () {},
                       ),
                       new ListTile(
                         title: new Text(
                           CommonUtils.getLocale(context).home_change_language,
                           style: ZpjConstant.normalText,
                         ),
-                        onTap: (){
-
-                        },
+                        onTap: () {},
                       ),
                       new ListTile(
-                        title: new Text(CommonUtils.getLocale(context).home_check_update,style: ZpjConstant.normalText,),
-                        onTap: (){},
+                        title: new Text(
+                          CommonUtils.getLocale(context).home_check_update,
+                          style: ZpjConstant.normalText,
+                        ),
+                        onTap: () {},
+                      ),
+                      new ListTile(
+                        title: new Text(
+                          ZpjLocalizations.of(context).currentLocalized.home_about,
+                          style: ZpjConstant.normalText,
+                        ),
+                        onTap: () {},
+                      ),
+                      new ListTile(
+                        title: new Text(
+                          CommonUtils.getLocale(context).Login_out,
+                          style: ZpjConstant.normalText,
+                        ),
+                        onTap: () {},
                       ),
                     ],
                   ),

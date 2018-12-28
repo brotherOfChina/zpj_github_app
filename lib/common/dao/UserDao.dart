@@ -50,7 +50,7 @@ class UserDao {
     var resultData = null;
     if (res != null && res.result) {
       await LocalStorage.save(Config.PW_KEY, password);
-       resultData = await getUserInfo(null);
+       resultData = await getUserInfo(null,needDb: true);
       if (Config.DEBUG) {
 
         print(resultData.data);
@@ -122,7 +122,7 @@ class UserDao {
   static initUserInfo(Store store) async {
     var token = await LocalStorage.get(Config.TOKEN_KEY);
     var res = await getUserInfoLocal();
-    if (res != null && res.reslut && token != null) {
+    if (res != null && res.result && token != null) {
       store.dispatch(UpdateUserAction(res.data));
     }
 

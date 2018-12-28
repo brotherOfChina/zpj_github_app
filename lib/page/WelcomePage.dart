@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:zpj_github_app/common/dao/UserDao.dart';
 import 'package:zpj_github_app/common/redux/ZpjRedux.dart';
 import 'package:zpj_github_app/page/LoginPage.dart';
+import 'package:zpj_github_app/common/utils/CommonUtils.dart';
+import 'package:zpj_github_app/common/utils/NavigatorUtils.dart';
 
 class WelcomePage extends StatefulWidget {
   static final sName = '/';
@@ -25,8 +28,16 @@ class _WelcomePageState extends State<WelcomePage> {
     }
     hadInit = true;
     Store<ZpjState> store = StoreProvider.of(context);
+    CommonUtils.initStatusBarHeight(context);
     new Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, LoginPage.sName);
+      UserDao.initUserInfo(store).then((res){
+        if(res!=null&&res.result){
+          NavigatorUtils.goHome(context);
+        }else{
+          NavigatorUtils.goLogin(context);
+        }
+        return true;
+      });
     });
   }
 
@@ -34,7 +45,10 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       body: new Container(
-        child: Image.asset("static/images/yang_mi.jpg"),
+        child:new Center(
+          child: Image.asset("static/images/yang_mi.jpg"),
+        )
+        ,
       ),
     );
   }
