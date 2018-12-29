@@ -28,4 +28,21 @@ class SqlManager {
     _database = await openDatabase(path,
         version: _VERSION, onCreate: (Database db, int version) async {});
   }
+  ///表是否存在
+  static isTableExits(String tableName) async {
+
+  }
+  ///获取当前数据库
+  static Future<Database> getCurrentDatabase() async{
+    if(_database==null){
+      await init();
+    }
+    return _database;
+  }
+  ///关闭
+  static close(){
+    _database.close();
+    _database=null;
+  }
+
 }

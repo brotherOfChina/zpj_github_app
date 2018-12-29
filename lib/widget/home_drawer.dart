@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:zpj_github_app/common/dao/issue_dao.dart';
 import 'package:zpj_github_app/common/redux/ZpjRedux.dart';
 import 'package:zpj_github_app/common/model/User.dart';
 import 'package:zpj_github_app/common/style/ZPJStyle.dart';
 import 'package:zpj_github_app/common/utils/CommonUtils.dart';
 import 'package:zpj_github_app/common/localization/DefaultLocalizations.dart';
+import 'package:zpj_github_app/common/db/repos/repository_issue.dart';
 /**
  *   author：Administrator
  *   create_date:2018/12/28 0028-10:10
@@ -65,7 +67,7 @@ class HomeDrawer extends StatelessWidget {
                               return;
                             }
                             CommonUtils.showLoadingDialog(context);
-                            //todo
+
                           },
                               titleController: new TextEditingController(),
                               valueController: new TextEditingController(),

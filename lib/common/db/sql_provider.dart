@@ -25,14 +25,19 @@ abstract class BaseDbProvider{
   }
   @mustCallSuper
   prepare(name ,String createSql)async{
-
+    isTableExits=await SqlManager.isTableExits(name);
+    if(isTableExits){
+      Database db=await SqlManager.getCurrentDatabase();
+      return await db.execute(createSql);
+    }
 
   }
   @mustCallSuper
   open() async{
     if(!isTableExits){
-//      await prepare()
+      await prepare(tableName(),tableSqlString());
     }
+    return await SqlManager.getCurrentDatabase();
 
   }
 
