@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:sqflite/sqflite.dart';
 import 'package:zpj_github_app/common/db/sql_provider.dart';
 import 'package:zpj_github_app/common/model/RepoCommit.dart';
@@ -80,11 +82,19 @@ class RepositoryCommitsDbProvider extends BaseDbProvider {
   }
 
   ///获取事件数据
-  Future<List<RepoCommit>> getData(String fullName,String  branch)async{
-    Database db=await getDataBase();
-    var provider=await _getProvider(db, fullName, branch);
-    if(provider!=null){
-      List<RepoCommit> list=new List();
+  Future<List<RepoCommit>> getData(String fullName, String branch) async {
+    Database db = await getDataBase();
+    var provider = await _getProvider(db, fullName, branch);
+    if (provider != null) {
+      List<RepoCommit> list = new List();
+      List<dynamic> eventMap = json.decode(provider.data);
+      if (eventMap.length > 0) {
+        for (var item in eventMap) {
+          list.add(RepoCommit.fromJson(item));
+        }
+      }
+      return list;
     }
+    return null;
   }
 }
