@@ -58,26 +58,27 @@ class UserInfoDbProvider extends BaseDbProvider {
         columns: [columnId, columnUserName, columnData],
         where: "$columnUserName=?",
         whereArgs: [userName]);
-    if(maps.length>0){
-      UserInfoDbProvider provider=UserInfoDbProvider.fromMap(maps.first);
-      return  provider;
+    if (maps.length > 0) {
+      UserInfoDbProvider provider = UserInfoDbProvider.fromMap(maps.first);
+      return provider;
     }
     return null;
   }
+
   ///插入到数据库
-  Future insert(String userName,String eventMapString) async{
-    Database db=await getDataBase();
-    var userProvider=_getUserProvider(db, userName);
-    if(userProvider!=null){
-      await db.delete(name,where: "$columnUserName=?",whereArgs: [userName]);
+  Future insert(String userName, String eventMapString) async {
+    Database db = await getDataBase();
+    var userProvider = _getUserProvider(db, userName);
+    if (userProvider != null) {
+      await db.delete(name, where: "$columnUserName=?", whereArgs: [userName]);
     }
     return await db.insert(name, toMap(userName, eventMapString));
-
   }
+
   Future<User> getUserInfo(String userName) async {
-    Database db=await getDataBase();
-    var userProvider=await _getUserProvider(db, userName);
-    if(userProvider!=null){
+    Database db = await getDataBase();
+    var userProvider = await _getUserProvider(db, userName);
+    if (userProvider != null) {
       return User.fromJson(json.decode(userProvider.data));
     }
     return null;

@@ -50,7 +50,7 @@ class UserDao {
     var resultData = null;
     if (res != null && res.result) {
       await LocalStorage.save(Config.PW_KEY, password);
-       resultData = await getUserInfo(null,needDb: true);
+       resultData = await getUserInfo(null);
       if (Config.DEBUG) {
 
         print(resultData.data);

@@ -28,21 +28,26 @@ class SqlManager {
     _database = await openDatabase(path,
         version: _VERSION, onCreate: (Database db, int version) async {});
   }
+
   ///表是否存在
   static isTableExits(String tableName) async {
-
+    await getCurrentDatabase();
+    var res = await _database.rawQuery(
+        "select * from Sqlite_master where type = 'table' and name = '$tableName'");
+    return res != null && res.length > 0;
   }
+
   ///获取当前数据库
-  static Future<Database> getCurrentDatabase() async{
-    if(_database==null){
+  static Future<Database> getCurrentDatabase() async {
+    if (_database == null) {
       await init();
     }
     return _database;
   }
-  ///关闭
-  static close(){
-    _database.close();
-    _database=null;
-  }
 
+  ///关闭
+  static close() {
+    _database.close();
+    _database = null;
+  }
 }
