@@ -56,6 +56,26 @@ mixin ListState<T extends StatefulWidget>
   }
 
   @protected
+  Future<Null> onLoadMore() async {
+    if (isLoading) {
+      return null;
+    }
+    isLoading = true;
+    page++;
+    var res = await requestLoadMore();
+    if (res != null && res.result) {
+      if (isShow) {
+        setState(() {
+          control.dataList.addAll(res.data);
+        });
+      }
+    }
+    resolveDataResult(res);
+    isLoading = false;
+    return null;
+  }
+
+  @protected
   resolveDataResult(res) {
     if (isShow) {
       setState(() {

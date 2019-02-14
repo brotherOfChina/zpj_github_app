@@ -6,7 +6,6 @@ import 'package:zpj_github_app/widget/tab_bar_widget.dart';
 import 'package:zpj_github_app/widget/home_drawer.dart';
 import 'package:zpj_github_app/widget/title_bar.dart';
 import 'package:zpj_github_app/common/localization/DefaultLocalizations.dart';
-
 /**
  *   author：Administrator
  *   create_date:2018/12/28 0028-9:05
@@ -61,7 +60,9 @@ class HomePage extends StatelessWidget {
       child: new TabBarWidget(
         type: TabBarWidget.BOTTOM_TAB,
         tabItems: tabs,
-        tabViews: <Widget>[],
+        tabViews: <Widget>[
+
+        ],
         drawer: HomeDrawer(),
         backgroundColor: ZPJColors.primarySwatch,
         indicatorColor: Color(ZPJColors.white),
